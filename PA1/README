@@ -1,0 +1,42 @@
+Contact Info:
+-----------------
+Lukas Bush
+lubu0783@colorado.edu
+
+File Information:
+-----------------
+arch/x86/kernel/cs3753_add.c - The system call program that takes the two input
+values along with pointer integar that will hold the sum of the two inputs
+and adds them together and puts them in the pointer to the sum.
+
+arch/x86/kernel/Makefile - This file contains the instructions that is needed
+to compile and build the system calls and kernel. 
+
+arch/x86/entry/entry/syscalls/syscall_64.tbl - This file contains the system
+call table, in which we were able to add our two functions to it, rebuild it,
+and have it as a system call.
+
+include/linux/syscalls.h - This is a header file that allows us to link all our
+test programs to our system calls allowing us to test them to make sure 
+they work properly.
+
+/var/log/syslog - This file contains the system log
+
+Testing.c - Test the function call for helloworld, returning a -1 if the system
+call fails and 0 if it works.
+
+TestingAdd.c - Tests the function by plugging two inputs and the address of the
+where the sum will be stored into the system call cs3753_add.c and then prints
+the value of the sum after the system call has been called and worked on it.
+
+Instructions to Build:
+----------------------
+When running the test program for cs3753_add.c, it goes through some very
+simple steps. It first initializes 3 values, num1 and num2 are the two values
+that will be added together and sum is the place where the return sum from the 
+system call is returned to. It then proceeds to call the system call, inputing
+num1, num2, and the address to sum. It then takes that information to the
+system call in which it adds the two values together, puts the value in the
+pointer to the sum value in which it replaces it, and then returns 0 stating
+that it works. It then returns to the test program where it prints out sum 
+showing that the sum of the two values is in there and then exits.
