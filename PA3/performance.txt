@@ -1,0 +1,44 @@
+Orignally tested on good interent resulted in 5> second times
+But not on McDonald's interenet, therefore, dnslookup took longer
+
+Number for requester thread = 1
+Number for resolver thread = 1
+Total run time: 11 seconds 10239004 micro seconds
+Thread 0 read 5 files
+
+Number for requester thread = 1
+Number for resolver thread = 3
+Total run time: 10 seconds 9412481 micro seconds
+Thread 0 read 5 files
+
+Number for requester thread = 3
+Number for resolver thread = 1
+Total run time: 16 seconds 15360714 micro seconds
+Thread 0 read 5 files
+Thread 1 read 4 files
+Thread 2 read 3 files
+
+Number for requester thread = 3
+Number for resolver thread = 3
+Total run time: 10 seconds 10347323 micro seconds
+Thread 0 read 5 files
+Thread 1 read 4 files
+Thread 2 read 3 files
+
+Number for requester thread = 5
+Number for resolver thread = 5
+Total run time: 11 seconds 11056422 micro seconds
+thread 0 worked on 5
+thread 1 worked on 4
+thread 2 worked on 3
+thread 3 worked on 2
+thread 4 worked on 1
+
+Number for requester thread = 8
+Number for resolver thread = 5
+Total run time: 11 seconds 10554892 micro seconds
+thread 0 worked on 5
+thread 1 worked on 4
+thread 2 worked on 3
+thread 3 worked on 2
+thread 4 worked on 1

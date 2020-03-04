@@ -1,0 +1,22 @@
+Name: Lukas Bush
+Student: 107553195
+Class: Operating systems
+
+File List
+___________________
+
+pager-lru.c - Looks for the value with the least recently used in ticks. Removes that value from the page table.
+
+pager-predict.c -  Uses the same page eviction policy as least recently used. But trys to pagein the next page.
+
+makefile - Makes the test files (given to us).
+
+README - This file, which tells you all this.
+
+How to Build
+___________________
+Building the file is rather simple. Go to the location in which all the files are located and run
+the terminal from there. Type the command "make" and it will make all the files for you. To test,
+type "./test-" and then which file you want to test. You can either test predict or lru in which you
+would type "predict" or "lru".
+ 

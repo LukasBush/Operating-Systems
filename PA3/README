@@ -1,0 +1,34 @@
+Name: Lukas Bush
+Student ID: 107553195
+Class: CSCI 3753
+Assignment: PS2
+
+File List
+___________________
+
+multi-lookup.c - This is the main function which has 3 parts, a main, a requester thread, and a
+resolver thread. 
+
+The main does a bunch of checks and see if the information given exceeds any of the max
+numbers and fixes the situation. It then calls the requester and resolvers and waits till they are
+done to complete. 
+
+Requesters takes the file and reads it, and if there is no file to read, it goes and helps with other 
+files. It then reads to the buffer. Once all the files have been read, it prints how many files it had
+worked to a service file. 
+
+Resolvers checks to see if the queue is empty and if the there are still requesters working.
+It then reads from the queue, gets the ip address if available, and writes to the results. 
+
+multi-lookup.h - This files holds 3 structures which are used through out multi-lookup.c. A Global
+structure which holds all varibles needed for seperate function. A reqThread strucutre which holds all
+information for the requester and same the resolver struct does the same but for the resolver. 
+
+How to Build
+___________________
+
+There are very few steps in order to build the files. Simply run the terminal, and type the 
+command "gcc queue.c multi-lookup.k -Wall -Wextra". That will compile the program, which then can
+then be ran by calling the function with "./a.out (# of requesters) (# of resolvers) (service file)
+(results file) files to be read". Results file will hold the website along with the ip address and 
+service shows the number of files each thread worked on.  

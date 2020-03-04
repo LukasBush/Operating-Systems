@@ -1,0 +1,70 @@
+Name: Lukas Bush
+Student ID: 107553195
+Class: CSCI 3753
+Assignment: PS2
+
+File List
+___________________
+
+Interactive.c - This is the interactive test function that allows us to test
+our LKM. The file takes no parameters and returns nothing once its finished.
+It prompts the user to enter 1 of 4 inputs, depending on what that input is
+prompts certain task. Entering an 'r' prompts the read section in which the user
+is asked how many bytes they want to read and then calls the read function. If
+the user enters a 'w', the menu then goes to the write section in which it asks 
+for a user input in which it wishes to write to the device. It then calls the
+write function. If the user types 's', it will take the menu to the seek driver
+the user is asked to give to values. An offset value and a whence value, both
+will be used directly after that when calling the seek function. The last
+option is when the user gives an 'e' which simply prompts an exit from the
+testing function in which the user exits the program.
+
+LukasModule.c - This is is our Device Driver. Inside of this file are 7 functions. The first two are the most
+important. The intialize and the exit function. When the device is installed, it runs through the intialize,
+setting up the major number along with mallocing a buffer for later purpose.  The exit function is called
+when the device is uninstalled. It unregisters the device from the major number and then free the space
+we allocated in our intialize function. The next 5 functions are ones that can be called from our testing
+function. Open is pretty self explainatory, when called, it opens the device. Similarly with release, which 
+closes the device when called. Both implement a counter to say how many times the file has been opened.
+Read takes the character that the buffer was last on or has been moved to up to the offset number and
+returns whats in those positions. Write takes the text from the user and put it in the kernel array printing
+the length to the log. The seek function seeks to a certain position depending on what the whence is. 
+Depending on the whence, the new position will either be set to the offset, the current position plus the
+offset, or the end of the array and subtract the offset from it. 
+
+How to Build
+______________
+
+There are many steps that are required to building the two files LukasModule.c and
+Interactive.c. Along with that, you'll have to install a simple-character-driver
+(the -'s are suppose to be underscores) into your /dev folder. To round it all up,
+you will also need to make a Makefile. 
+
+To start everything, you'll need to create a file called "modules". I did this on my desktop for easy access.
+In the modules file, you'll want to create a new file called "Makefile". In that file, type "obj-m:=LukasModule.o. 
+After that, save the file and exit, you are now done typing in the Makefile.
+
+Since I have provided you with an Interactive test menu to test the Character Device Driver and the 
+Character Device Driver itself, all that is needed to be done is to complie and build them. We will start with
+the Interactive test menu. Put the Interactive menu in you /home/user file. From there, go to the terminal,
+locate the area where the file is, and type the command "gcc Interactive.c". You have now built the test file
+for the Character Device Driver. 
+
+Next, you'll need to make the Device File for the Device driver. To do so, you'll need to type the following 
+command, "sudo mknod –m 777 /dev/simple_character_device c 243 0". Where 777 is so the creator and
+all other can read, write and execute it. 243 is the major number, if thats already taken in yours and you
+need to change it, make sure to change it in the file listed above. 0 is the minor number and 'c' stands for 
+character driver. 
+
+Finally, to install the Character Device Driver, you will first need to move the file that has been provided,
+LukasModule.c, into the modules file. Next, go into the terminal and go to the are of the modules folder. 
+For me, that was "cd Desktop/modules". Once there, you'll now need to compile the module. Type the
+following command to compile the module, "make –C /lib/modules/$(uname -r)/build M=$PWD modules". 
+Now that youve done that, you've created a file name "LukasModule.ko", which is the file we will be using
+for our next step. We now need to install the module. To do so, make sure you are in the same file location as
+when doing the previous command. Now type "sudo insmod LukasModule.ko" to install it. You've now 
+installed the module and can check using the command "dmesg". For later reference, to remove the 
+module, type the command "sudo rmmod LukasModule".  
+
+You now have everything installed and can run the interactive test menu by typing "cd" in the terminal and
+then calling "./a.out"

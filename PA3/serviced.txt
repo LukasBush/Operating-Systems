@@ -1,0 +1,5 @@
+thread 0 worked on 5
+thread 2 worked on 3
+thread 3 worked on 2
+thread 1 worked on 4
+thread 4 worked on 1
